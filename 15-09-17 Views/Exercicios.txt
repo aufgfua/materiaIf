@@ -1,1 +1,52 @@
 Exercicios de BD abaixo \/ \/ \/
+
+
+1 - 
+create view exercicio1 as 
+select e.*, d.nome as nomedep, d.identempger
+from empregado e, departamento d
+where e.depnum = d.depnum
+
+2 - 
+create view exercicio2 as
+select d.nome as nomed, avg(e.sal) as sal
+from departamento d, empregado e
+where d.depnum = e.depnum
+group by d.nome
+
+3- 
+create view exercicio3 as
+select dep.nome as nomedep, emp.nome
+from dependente dep, empregado emp
+where dep.identemp = emp.identemp
+
+4- 
+create view exercicio4 as
+select emp.*
+from empregado emp, trabalhano tn, projeto p
+where emp.identemp = tn.identemp and tn.projnum = p.projnum
+
+5 - 
+create view exercicio5 as
+select emp.*
+from empregado emp, trabalhano tn, projeto p
+where emp.identemp = tn.identemp and tn.projnum not in (select p.projnum
+                                                      					     from projeto p)
+
+6 - 
+create view exercicio6 as
+select to_char (emp.dataNasc, 'MONTH') as datanasc, emp.nome as nomeemp
+from empregado emp 
+
+7 -
+create view exercicio7 as
+select to_char (emp.dataNasc, 'mm') as datanasc, emp.nome as nomeemp
+from empregado emp 
+
+8 -
+
+create or replace view exercicio8 as 
+select sum(tn.hrs) as hrs, p.nome as nomeproj
+from trabalhano tn, projeto p
+where tn.projnum = p.projnum
+group by p.nome
